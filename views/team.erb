@@ -5,9 +5,25 @@
   <title>Basketball Team</title>
  </head>
  <body>
+<!-- hashes are bad!!! hackers!!! next time, hard code-->
+
+<% new_key_mappings = {"name" => "Team Name", "coach" => "Coach", "pg"=> "Point Guard", "sg"=>"Shooting Guard", "sf"=>"Small Forward", "pf" =>"Power Forward", "c"=>"Center"} %>
+
+ <% @team_info = @team_info.map {|k, v| [new_key_mappings[k], v]}.to_h %> 
+
+ <% @team_name = @team_info.select {|key, value| key=="Team Name"} %>
+
+ <% @team_name.each do |k, v| %>
+ <h1><%= "#{k}: #{v}" %></h1>
+ <% end %>
+
+ <% @team_info = @team_info.select {|k, v| k != "Team Name"} %>
+
+ <% @team_info.each do |key, value| %>
+ 	<h2><%= "#{key}: #{value}" %></h2>
+ <% end %>
+
  
-
-
  </body>
 </html>
 
